@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "post_stats",
+  "info": {
+    "singularName": "post-stat",
+    "pluralName": "post-stats",
+    "displayName": "Post Stat"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "postSlug": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "likeCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    }
+  }
+}
