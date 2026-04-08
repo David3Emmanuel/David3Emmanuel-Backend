@@ -1,0 +1,10 @@
+{
+  "collectionName": "components_shared_tech_stack_items",
+  "info": {
+    "displayName": "Tech Stack Item",
+    "icon": "stack"
+  },
+  "options": {},
+  "attributes": {},
+  "config": {}
+}

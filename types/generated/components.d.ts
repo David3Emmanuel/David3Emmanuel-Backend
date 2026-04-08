@@ -1,22 +1,28 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
-export interface SocialSocialLink extends Struct.ComponentSchema {
-  collectionName: 'components_social_social_links';
+export interface SharedProjectFeature extends Struct.ComponentSchema {
+  collectionName: 'components_shared_project_features';
   info: {
-    displayName: 'Social Link';
-    icon: 'paperPlane';
+    displayName: 'Project Feature';
+    icon: 'bulletList';
   };
-  attributes: {
-    icon: Schema.Attribute.Media<'images'>;
-    link: Schema.Attribute.String & Schema.Attribute.Required;
-    platform: Schema.Attribute.String & Schema.Attribute.Required;
+  attributes: {};
+}
+
+export interface SharedTechStackItem extends Struct.ComponentSchema {
+  collectionName: 'components_shared_tech_stack_items';
+  info: {
+    displayName: 'Tech Stack Item';
+    icon: 'stack';
   };
+  attributes: {};
 }
 
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
-      'social.social-link': SocialSocialLink;
+      'shared.project-feature': SharedProjectFeature;
+      'shared.tech-stack-item': SharedTechStackItem;
     }
   }
 }

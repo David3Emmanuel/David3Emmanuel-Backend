@@ -467,65 +467,6 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAuthorAuthor extends Struct.SingleTypeSchema {
-  collectionName: 'authors';
-  info: {
-    displayName: 'Author';
-    pluralName: 'authors';
-    singularName: 'author';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    avatar: Schema.Attribute.Media<'images'> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    bio: Schema.Attribute.Text &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.Email &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::author.author'>;
-    name: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    publishedAt: Schema.Attribute.DateTime;
-    socials: Schema.Attribute.Component<'social.social-link', true> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
   collectionName: 'blog_posts';
   info: {
@@ -1196,7 +1137,6 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::author.author': ApiAuthorAuthor;
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
       'api::category.category': ApiCategoryCategory;
       'api::tag.tag': ApiTagTag;
