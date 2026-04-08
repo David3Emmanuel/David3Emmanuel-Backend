@@ -93,6 +93,18 @@
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "mappedBy": "blog_posts"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "blog_post"
+    },
+    "post_stat": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::post-stat.post-stat",
+      "mappedBy": "blog_post"
     }
   }
 }

@@ -487,6 +487,7 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::category.category'
     >;
+    comments: Schema.Attribute.Relation<'oneToMany', 'api::comment.comment'>;
     content: Schema.Attribute.RichText &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -523,6 +524,10 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::blog-post.blog-post'
+    >;
+    post_stat: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::post-stat.post-stat'
     >;
     publishedAt: Schema.Attribute.DateTime;
     readTime: Schema.Attribute.Integer &
@@ -606,6 +611,10 @@ export interface ApiCommentComment extends Struct.CollectionTypeSchema {
   };
   attributes: {
     approved: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    blog_post: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::blog-post.blog-post'
+    >;
     body: Schema.Attribute.Text & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -620,7 +629,6 @@ export interface ApiCommentComment extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
-    postSlug: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -639,6 +647,10 @@ export interface ApiPostStatPostStat extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    blog_post: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::blog-post.blog-post'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -656,9 +668,6 @@ export interface ApiPostStatPostStat extends Struct.CollectionTypeSchema {
       'api::post-stat.post-stat'
     > &
       Schema.Attribute.Private;
-    postSlug: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

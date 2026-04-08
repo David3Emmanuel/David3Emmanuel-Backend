@@ -12,13 +12,29 @@ export default factories.createCoreController('api::post-stat.post-stat', ({ str
       return ctx.badRequest('slug is required');
     }
 
+    // Find the blog post by slug
+    const posts = await strapi.documents('api::blog-post.blog-post').findMany({
+      filters: { slug: { $eq: slug } },
+      status: 'published',
+    });
+
+    if (!posts.length) {
+      return ctx.notFound('Blog post not found');
+    }
+
+    const blogPost = posts[0];
+
+    // Find existing post-stat linked to this blog post
     const stats = await strapi.documents('api::post-stat.post-stat').findMany({
-      filters: { postSlug: slug },
+      filters: { blog_post: { documentId: { $eq: blogPost.documentId } } },
     });
 
     if (stats.length === 0) {
       const newStat = await strapi.documents('api::post-stat.post-stat').create({
-        data: { postSlug: slug, likeCount: 1 },
+        data: {
+          likeCount: 1,
+          blog_post: blogPost.documentId,
+        },
       });
       return ctx.send({ likeCount: newStat.likeCount });
     }

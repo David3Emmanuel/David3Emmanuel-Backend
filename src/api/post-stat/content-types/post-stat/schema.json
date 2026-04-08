@@ -10,15 +10,16 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "postSlug": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
     "likeCount": {
       "type": "integer",
       "default": 0,
       "min": 0
+    },
+    "blog_post": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::blog-post.blog-post",
+      "inversedBy": "post_stat"
     }
   }
 }

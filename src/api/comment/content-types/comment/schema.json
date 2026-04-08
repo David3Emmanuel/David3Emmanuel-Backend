@@ -27,9 +27,11 @@
       "type": "boolean",
       "default": false
     },
-    "postSlug": {
-      "type": "string",
-      "required": true
+    "blog_post": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::blog-post.blog-post",
+      "inversedBy": "comments"
     }
   }
 }
