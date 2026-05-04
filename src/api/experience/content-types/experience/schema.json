@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "experiences",
+  "info": {
+    "singularName": "experience",
+    "pluralName": "experiences",
+    "displayName": "Experience"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "company": {
+      "type": "string",
+      "required": true
+    },
+    "period": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "json",
+      "required": true
+    },
+    "tech": {
+      "type": "json"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["work", "activity"],
+      "required": true
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}
