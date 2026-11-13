@@ -113,6 +113,18 @@
       "relation": "oneToOne",
       "target": "api::post-stat.post-stat",
       "mappedBy": "blog_post"
+    },
+    "newsletterQueuedAt": {
+      "type": "datetime",
+      "private": true
+    },
+    "newsletterRecipientCount": {
+      "type": "integer",
+      "private": true
+    },
+    "newsletterEnqueueError": {
+      "type": "text",
+      "private": true
     }
   }
 }

@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscribers",
+  "info": {
+    "singularName": "subscriber",
+    "pluralName": "subscribers",
+    "displayName": "Subscriber"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true,
+      "private": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "confirmed", "unsubscribed"],
+      "default": "pending",
+      "required": true
+    },
+    "confirmToken": {
+      "type": "string",
+      "unique": true,
+      "private": true
+    },
+    "unsubscribeToken": {
+      "type": "string",
+      "unique": true,
+      "private": true
+    },
+    "source": {
+      "type": "string"
+    },
+    "confirmedAt": {
+      "type": "datetime"
+    },
+    "unsubscribedAt": {
+      "type": "datetime"
+    },
+    "lastEmailedAt": {
+      "type": "datetime"
+    }
+  }
+}
