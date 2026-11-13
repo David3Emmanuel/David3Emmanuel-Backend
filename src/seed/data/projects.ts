@@ -879,7 +879,7 @@ export const projects: SeedProject[] = [
     features: ["React Router 7 SSR frontend with routes for the blog index, post, category and tag pages.","Strapi 5 content types for blog posts, projects, experience, categories, tags, comments and post stats.","Reader comments and post-like counters persisted through Strapi and server-side loaders and actions."],
     techStack: ["TypeScript","React","React Router 7","Strapi 5","Tailwind CSS","Vite","PostgreSQL","SQLite","Cloudinary","Docker"],
     github: "https://github.com/David3Emmanuel/David3Emmanuel",
-    demo: "https://davidemmanuel.dev",
+    demo: "https://www.davidemmanuel.dev",
     featured: false,
   },
   {
@@ -1205,3 +1205,4 @@ export const projects: SeedProject[] = [
     featured: false,
   },
 ]
+

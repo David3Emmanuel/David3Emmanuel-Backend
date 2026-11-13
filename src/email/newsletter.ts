@@ -7,7 +7,7 @@ const POST_UID = 'api::blog-post.blog-post'
 const SUBSCRIBER_UID = 'api::subscriber.subscriber'
 
 export function siteUrl(): string {
-  return (process.env.SITE_URL ?? 'https://davidemmanuel.dev').replace(/\/$/, '')
+  return (process.env.SITE_URL ?? 'https://www.davidemmanuel.dev').replace(/\/$/, '')
 }
 
 export function newsletterDisabled(): boolean {
@@ -114,3 +114,4 @@ export async function enqueuePostNewsletter(
 
   return { queued: subscribers.length }
 }
+

@@ -34,7 +34,7 @@ export default {
       return ctx.badRequest({ error: 'A real recipient address is required.' })
     }
 
-    const siteUrl = (process.env.SITE_URL ?? 'https://davidemmanuel.dev').replace(/\/$/, '')
+    const siteUrl = (process.env.SITE_URL ?? 'https://www.davidemmanuel.dev').replace(/\/$/, '')
     const message = testEmail({ siteUrl })
 
     const result = await sendLoggedEmail(strapi(), {
@@ -76,3 +76,4 @@ export default {
     return ctx.send(result)
   },
 }
+

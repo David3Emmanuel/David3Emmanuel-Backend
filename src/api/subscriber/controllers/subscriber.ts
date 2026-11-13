@@ -10,7 +10,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 const attempts = new Map<string, number[]>()
 
 function siteUrl(): string {
-  return (process.env.SITE_URL ?? 'https://davidemmanuel.dev').replace(/\/$/, '')
+  return (process.env.SITE_URL ?? 'https://www.davidemmanuel.dev').replace(/\/$/, '')
 }
 
 function strapi(): Core.Strapi {
@@ -203,4 +203,5 @@ export default {
     </body></html>`)
   },
 }
+
 
