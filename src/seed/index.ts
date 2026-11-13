@@ -80,6 +80,8 @@ async function seedProjects(strapi: Core.Strapi) {
     description: string | null
     order: number | null
     featured: boolean | null
+    demo: string | null
+    github: string | null
     publishedAt: string | null
   }>
 
@@ -142,13 +144,20 @@ async function seedProjects(strapi: Core.Strapi) {
       removedEarlier.add(canonical.documentId)
     }
 
+    // A seed that knows a link must also be able to correct it; a seed without
+    // one leaves whatever the record already carries alone.
+    const linksUnchanged =
+      (!rest.demo || match.demo === rest.demo) &&
+      (!rest.github || match.github === rest.github)
+
     const unchanged =
       match.title === project.title &&
       match.category === project.category &&
       match.status === (project.status ?? null) &&
       match.description === (project.description ?? null) &&
       match.order === project.order &&
-      Boolean(match.featured) === featured
+      Boolean(match.featured) === featured &&
+      linksUnchanged
 
     if (unchanged) continue
 
