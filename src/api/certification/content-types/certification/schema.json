@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "certifications",
+  "info": {
+    "singularName": "certification",
+    "pluralName": "certifications",
+    "displayName": "Certification"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "issuer": {
+      "type": "string"
+    },
+    "dateLabel": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "enumeration",
+      "enum": ["training", "award", "scholarship", "shortlist"],
+      "required": true
+    },
+    "url": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

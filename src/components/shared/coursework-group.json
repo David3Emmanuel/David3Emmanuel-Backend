@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_coursework_groups",
+  "info": {
+    "displayName": "Coursework Group",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "courses": {
+      "type": "json"
+    }
+  },
+  "config": {}
+}

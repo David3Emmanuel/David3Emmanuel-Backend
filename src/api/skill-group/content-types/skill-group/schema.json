@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "skill_groups",
+  "info": {
+    "singularName": "skill-group",
+    "pluralName": "skill-groups",
+    "displayName": "Skill Group"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "code",
+        "monitor",
+        "server",
+        "globe",
+        "gamepad",
+        "sparkles",
+        "cpu",
+        "wrench"
+      ],
+      "required": true
+    },
+    "items": {
+      "type": "json"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

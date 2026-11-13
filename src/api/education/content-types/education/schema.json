@@ -1,0 +1,32 @@
+{
+  "kind": "singleType",
+  "collectionName": "educations",
+  "info": {
+    "singularName": "education",
+    "pluralName": "educations",
+    "displayName": "Education"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "institution": {
+      "type": "string",
+      "required": true
+    },
+    "degree": {
+      "type": "string"
+    },
+    "period": {
+      "type": "string"
+    },
+    "gpa": {
+      "type": "string"
+    },
+    "courseworkGroups": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.coursework-group"
+    }
+  }
+}
