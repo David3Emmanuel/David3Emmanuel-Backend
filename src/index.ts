@@ -1,4 +1,6 @@
-// import type { Core } from '@strapi/strapi';
+import type { Core } from '@strapi/strapi';
+
+import { seed } from './seed';
 
 export default {
   /**
@@ -16,5 +18,14 @@ export default {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
+  async bootstrap({ strapi }: { strapi: Core.Strapi }) {
+    if (process.env.SEED_ON_BOOT !== 'true') return;
+
+    try {
+      await seed({ strapi });
+    } catch (error) {
+      strapi.log.error('[seed] failed to write resume data');
+      strapi.log.error(error);
+    }
+  },
 };
