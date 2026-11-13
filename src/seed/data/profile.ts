@@ -11,7 +11,7 @@ export const profile = {
   availability: 'Available to relocate',
   email: 'david3emmanuel@gmail.com',
   phone: '+234 7012117811',
-  website: 'https://david3emmanuel.is-a.dev',
+  website: 'https://davidemmanuel.dev',
   socials: [
     {
       label: 'GitHub',
@@ -30,7 +30,7 @@ export const profile = {
     },
     {
       label: 'Website',
-      url: 'https://david3emmanuel.is-a.dev',
+      url: 'https://davidemmanuel.dev',
       icon: 'website',
     },
   ],
