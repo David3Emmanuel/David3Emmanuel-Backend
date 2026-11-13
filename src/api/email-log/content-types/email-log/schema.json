@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "email_logs",
+  "info": {
+    "singularName": "email-log",
+    "pluralName": "email-logs",
+    "displayName": "Email Log"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "template": {
+      "type": "string",
+      "required": true
+    },
+    "to": {
+      "type": "email",
+      "required": true,
+      "private": true
+    },
+    "subject": {
+      "type": "string"
+    },
+    "bodyText": {
+      "type": "text",
+      "private": true
+    },
+    "bodyHtml": {
+      "type": "text",
+      "private": true
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": ["auth", "bulk"],
+      "default": "bulk",
+      "required": true
+    },
+    "deliveryStatus": {
+      "type": "enumeration",
+      "enum": ["queued", "sending", "sent", "failed"],
+      "default": "queued",
+      "required": true
+    },
+    "attempts": {
+      "type": "integer",
+      "default": 0
+    },
+    "lastAttemptAt": {
+      "type": "datetime"
+    },
+    "nextAttemptAt": {
+      "type": "datetime"
+    },
+    "providerId": {
+      "type": "string"
+    },
+    "sentAt": {
+      "type": "datetime"
+    },
+    "error": {
+      "type": "text"
+    },
+    "subscriberDocumentId": {
+      "type": "string"
+    },
+    "postSlug": {
+      "type": "string"
+    },
+    "listUnsubscribeUrl": {
+      "type": "string",
+      "private": true
+    }
+  }
+}

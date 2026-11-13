@@ -525,6 +525,10 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::blog-post.blog-post'
     >;
+    newsletterEnqueueError: Schema.Attribute.Text & Schema.Attribute.Private;
+    newsletterQueuedAt: Schema.Attribute.DateTime & Schema.Attribute.Private;
+    newsletterRecipientCount: Schema.Attribute.Integer &
+      Schema.Attribute.Private;
     post_stat: Schema.Attribute.Relation<
       'oneToOne',
       'api::post-stat.post-stat'
@@ -708,6 +712,57 @@ export interface ApiEducationEducation extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     period: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiEmailLogEmailLog extends Struct.CollectionTypeSchema {
+  collectionName: 'email_logs';
+  info: {
+    displayName: 'Email Log';
+    pluralName: 'email-logs';
+    singularName: 'email-log';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    attempts: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    bodyHtml: Schema.Attribute.Text & Schema.Attribute.Private;
+    bodyText: Schema.Attribute.Text & Schema.Attribute.Private;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    deliveryStatus: Schema.Attribute.Enumeration<
+      ['queued', 'sending', 'sent', 'failed']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'queued'>;
+    error: Schema.Attribute.Text;
+    lastAttemptAt: Schema.Attribute.DateTime;
+    listUnsubscribeUrl: Schema.Attribute.String & Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::email-log.email-log'
+    > &
+      Schema.Attribute.Private;
+    nextAttemptAt: Schema.Attribute.DateTime;
+    postSlug: Schema.Attribute.String;
+    priority: Schema.Attribute.Enumeration<['auth', 'bulk']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'bulk'>;
+    providerId: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    sentAt: Schema.Attribute.DateTime;
+    subject: Schema.Attribute.String;
+    subscriberDocumentId: Schema.Attribute.String;
+    template: Schema.Attribute.String & Schema.Attribute.Required;
+    to: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.Private;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -906,6 +961,52 @@ export interface ApiSkillGroupSkillGroup extends Struct.CollectionTypeSchema {
     order: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSubscriberSubscriber extends Struct.CollectionTypeSchema {
+  collectionName: 'subscribers';
+  info: {
+    displayName: 'Subscriber';
+    pluralName: 'subscribers';
+    singularName: 'subscriber';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    confirmedAt: Schema.Attribute.DateTime;
+    confirmToken: Schema.Attribute.String &
+      Schema.Attribute.Private &
+      Schema.Attribute.Unique;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.Private &
+      Schema.Attribute.Unique;
+    lastEmailedAt: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subscriber.subscriber'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    source: Schema.Attribute.String;
+    status: Schema.Attribute.Enumeration<
+      ['pending', 'confirmed', 'unsubscribed']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'pending'>;
+    unsubscribedAt: Schema.Attribute.DateTime;
+    unsubscribeToken: Schema.Attribute.String &
+      Schema.Attribute.Private &
+      Schema.Attribute.Unique;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1460,11 +1561,13 @@ declare module '@strapi/strapi' {
       'api::certification.certification': ApiCertificationCertification;
       'api::comment.comment': ApiCommentComment;
       'api::education.education': ApiEducationEducation;
+      'api::email-log.email-log': ApiEmailLogEmailLog;
       'api::experience.experience': ApiExperienceExperience;
       'api::post-stat.post-stat': ApiPostStatPostStat;
       'api::profile.profile': ApiProfileProfile;
       'api::project.project': ApiProjectProject;
       'api::skill-group.skill-group': ApiSkillGroupSkillGroup;
+      'api::subscriber.subscriber': ApiSubscriberSubscriber;
       'api::tag.tag': ApiTagTag;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
